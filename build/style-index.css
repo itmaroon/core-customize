@@ -1,0 +1,63 @@
+/*!***************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/style.scss ***!
+  \***************************************************************************************************************************************************************************************************************************************/
+.edit-post-visual-editor .mb-sm {
+  -webkit-margin-after: 2em !important;
+          margin-block-end: 2em !important;
+}
+.edit-post-visual-editor .mb-md {
+  -webkit-margin-after: 3em !important;
+          margin-block-end: 3em !important;
+}
+.edit-post-visual-editor .mb-lg {
+  -webkit-margin-after: 4em !important;
+          margin-block-end: 4em !important;
+}
+
+.margin-controle .components-radio-control .components-flex {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 0;
+}
+.margin-controle .components-radio-control__option {
+  width: 100%;
+}
+.margin-controle .components-radio-control__option input {
+  display: none;
+}
+.margin-controle .components-radio-control__option input[type=radio]:checked + label {
+  background-color: #0085ba;
+  color: #fff;
+  text-shadow: 0 -1px 1px #005d82, 1px 0 1px #005d82, 0 1px 1px #005d82, -1px 0 1px #005d82;
+}
+.margin-controle .components-radio-control__option label {
+  display: block;
+  cursor: pointer;
+  width: 100%;
+  margin: 0;
+  padding: 9px 5px;
+  background: #f7f7f7;
+  color: #555e64;
+  text-align: center;
+  line-height: 1;
+  transition: 0.2s;
+  border: solid 1px #ccc;
+  border-left-style: none;
+  box-shadow: inset 0 -1px 0 #ccc;
+}
+.margin-controle .components-radio-control__option label:hover {
+  background: #fafafa;
+  border-color: #999;
+  box-shadow: inset 0 -1px 0 #999;
+  color: #23282d;
+}
+.margin-controle .components-radio-control__option:first-child label {
+  border-radius: 3px 0 0 3px;
+  border-left-style: solid;
+}
+.margin-controle .components-radio-control__option:last-child label {
+  border-radius: 0 3px 3px 0;
+}
+
+/*# sourceMappingURL=style-index.css.map*/
