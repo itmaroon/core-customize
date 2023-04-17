@@ -14,11 +14,10 @@ const {
 } = wp.components;
  
 const {
-    InspectorControls,
+    InspectorControls
 } = window.wp.editor;
  
 const { createHigherOrderComponent } = wp.compose;
-
 
 
 //core/buttonのカスタマイズ
@@ -64,17 +63,13 @@ export const addBtnDesignCtrl = createHigherOrderComponent( ( BlockEdit ) => {
 			// 拡張スタイル
 
 			const setBoxShadow = (prm, val)=>{
-				const extraStyle = {
-					boxShadow: '10px 5px 5px black',
-					color: 'red'
-				}
-				props.setAttributes({style: {color:'red'}}); 
+				props.setAttributes({BoxShadowLight: "5px 5px 5px red"})
 			}
 
 			return (
 				<Fragment>
 					<BlockEdit { ...props } />
-					<InspectorControls>
+					<InspectorControls group="styles">
             <PanelBody title="ボタンデザイン設定" initialOpen={ false } className="btn_design_ctrl">
 							<RangeControl
 								initialPosition={50}
@@ -111,48 +106,48 @@ export const addBtnDesignCtrl = createHigherOrderComponent( ( BlockEdit ) => {
 addFilter('editor.BlockEdit', 'itmar_core_customize/add_block_design', addBtnDesignCtrl);
 
 //エディタ画面での描画
-// const applyExtraAttributesInEditor = createHigherOrderComponent( ( BlockListBlock ) => {
-//   return ( props ) => {
-//     const {
-//       attributes,
-//       name,
-//       isValid,
-// 			wrapperProps
-//     } = props;
+const applyExtraAttributesInEditor = createHigherOrderComponent( ( BlockListBlock ) => {
+  return ( props ) => {
+    const {
+      attributes,
+      name,
+      isValid,
+			wrapperProps
+    } = props;
   
-//     if ( isValid && allowedBlocks.includes( name ) ){
-// 			const {
-//         BoxShadowLight,
-//       } = attributes;
+    if ( isValid && allowedBlocks.includes( name ) ){
+			const {
+        BoxShadowLight,
+      } = attributes;
   
-//       const extraStyle = {
-//         boxShadow: BoxShadowLight ? BoxShadowLight : undefined
-//       }
+      const extraStyle = {
+        boxShadow: BoxShadowLight ? BoxShadowLight : undefined
+      }
   
-//       let blockWrapperProps = wrapperProps;
-//       blockWrapperProps = {
-// 				...blockWrapperProps,
-// 				style: {
-// 					...( blockWrapperProps && { ...blockWrapperProps.style } ),
-// 					...extraStyle
-// 				},
-// 			};
+      let blockWrapperProps = wrapperProps;
+      blockWrapperProps = {
+				...blockWrapperProps,
+				style: {
+					...( blockWrapperProps && { ...blockWrapperProps.style } ),
+					...extraStyle
+				},
+			};
   
-//       return (
-//         <BlockListBlock  { ...props }
-// 					wrapperProps={ blockWrapperProps }
-//            />
-//       );
-// 		}
+      return (
+        <BlockListBlock  { ...props }
+					wrapperProps={ blockWrapperProps }
+           />
+      );
+		}
   
-//     return (
-//       <BlockListBlock  { ...props } />
-//     );
-//   };
-// } );
-// addFilter(
-//   'editor.BlockListBlock',
-//   'my-name-space/apply-extra-attributes-in-editor',
-//   applyExtraAttributesInEditor,
-// );
+    return (
+      <BlockListBlock  { ...props } />
+    );
+  };
+} );
+addFilter(
+  'editor.BlockListBlock',
+  'my-name-space/apply-extra-attributes-in-editor',
+  applyExtraAttributesInEditor,
+);
  

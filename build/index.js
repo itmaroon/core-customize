@@ -12,9 +12,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "addBtnDesignCtrl": function() { return /* binding */ addBtnDesignCtrl; }
 /* harmony export */ });
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _style_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./style.scss */ "./src/style.scss");
+/* harmony import */ var _babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/extends */ "./node_modules/@babel/runtime/helpers/esm/extends.js");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _style_scss__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./style.scss */ "./src/style.scss");
+
 
 //エントリーポイントとしてスタイルシートをインポート
 
@@ -84,35 +86,31 @@ const addBtnDesignCtrl = createHigherOrderComponent(BlockEdit => {
       // 拡張スタイル
 
       const setBoxShadow = (prm, val) => {
-        const extraStyle = {
-          boxShadow: '10px 5px 5px black',
-          color: 'red'
-        };
         props.setAttributes({
-          style: {
-            color: 'red'
-          }
+          BoxShadowLight: "5px 5px 5px red"
         });
       };
-      return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(BlockEdit, props), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(InspectorControls, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(PanelBody, {
+      return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(BlockEdit, props), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(InspectorControls, {
+        group: "styles"
+      }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(PanelBody, {
         title: "\u30DC\u30BF\u30F3\u30C7\u30B6\u30A4\u30F3\u8A2D\u5B9A",
         initialOpen: false,
         className: "btn_design_ctrl"
-      }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(RangeControl, {
+      }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(RangeControl, {
         initialPosition: 50,
         label: "Distanse",
         max: 100,
         min: 0,
         onChange: val => setBoxShadow('distanse', val),
         withInputField: false
-      }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(RangeControl, {
+      }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(RangeControl, {
         initialPosition: 50,
         label: "Intensity",
         max: 100,
         min: 0,
         onChange: val => setBoxShadow('intensity', val),
         withInputField: false
-      }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(RangeControl, {
+      }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(RangeControl, {
         initialPosition: 50,
         label: "Blur",
         max: 100,
@@ -121,56 +119,45 @@ const addBtnDesignCtrl = createHigherOrderComponent(BlockEdit => {
         withInputField: false
       }))));
     }
-    return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(BlockEdit, props);
+    return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(BlockEdit, props);
   };
 });
 addFilter('editor.BlockEdit', 'itmar_core_customize/add_block_design', addBtnDesignCtrl);
 
 //エディタ画面での描画
-// const applyExtraAttributesInEditor = createHigherOrderComponent( ( BlockListBlock ) => {
-//   return ( props ) => {
-//     const {
-//       attributes,
-//       name,
-//       isValid,
-// 			wrapperProps
-//     } = props;
-
-//     if ( isValid && allowedBlocks.includes( name ) ){
-// 			const {
-//         BoxShadowLight,
-//       } = attributes;
-
-//       const extraStyle = {
-//         boxShadow: BoxShadowLight ? BoxShadowLight : undefined
-//       }
-
-//       let blockWrapperProps = wrapperProps;
-//       blockWrapperProps = {
-// 				...blockWrapperProps,
-// 				style: {
-// 					...( blockWrapperProps && { ...blockWrapperProps.style } ),
-// 					...extraStyle
-// 				},
-// 			};
-
-//       return (
-//         <BlockListBlock  { ...props }
-// 					wrapperProps={ blockWrapperProps }
-//            />
-//       );
-// 		}
-
-//     return (
-//       <BlockListBlock  { ...props } />
-//     );
-//   };
-// } );
-// addFilter(
-//   'editor.BlockListBlock',
-//   'my-name-space/apply-extra-attributes-in-editor',
-//   applyExtraAttributesInEditor,
-// );
+const applyExtraAttributesInEditor = createHigherOrderComponent(BlockListBlock => {
+  return props => {
+    const {
+      attributes,
+      name,
+      isValid,
+      wrapperProps
+    } = props;
+    if (isValid && allowedBlocks.includes(name)) {
+      const {
+        BoxShadowLight
+      } = attributes;
+      const extraStyle = {
+        boxShadow: BoxShadowLight ? BoxShadowLight : undefined
+      };
+      let blockWrapperProps = wrapperProps;
+      blockWrapperProps = {
+        ...blockWrapperProps,
+        style: {
+          ...(blockWrapperProps && {
+            ...blockWrapperProps.style
+          }),
+          ...extraStyle
+        }
+      };
+      return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(BlockListBlock, (0,_babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({}, props, {
+        wrapperProps: blockWrapperProps
+      }));
+    }
+    return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(BlockListBlock, props);
+  };
+});
+addFilter('editor.BlockListBlock', 'my-name-space/apply-extra-attributes-in-editor', applyExtraAttributesInEditor);
 
 /***/ }),
 
@@ -193,6 +180,33 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module) {
 
 module.exports = window["wp"]["element"];
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime/helpers/esm/extends.js":
+/*!************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/esm/extends.js ***!
+  \************************************************************/
+/***/ (function(__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": function() { return /* binding */ _extends; }
+/* harmony export */ });
+function _extends() {
+  _extends = Object.assign ? Object.assign.bind() : function (target) {
+    for (var i = 1; i < arguments.length; i++) {
+      var source = arguments[i];
+      for (var key in source) {
+        if (Object.prototype.hasOwnProperty.call(source, key)) {
+          target[key] = source[key];
+        }
+      }
+    }
+    return target;
+  };
+  return _extends.apply(this, arguments);
+}
 
 /***/ })
 
